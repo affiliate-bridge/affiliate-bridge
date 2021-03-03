@@ -41,13 +41,25 @@ Affiliate Bridge allows you to effortlessly show affiliated items (only from eba
 
 == Frequently asked questions ==
 
+Q: How to use custom css filter?
+A: Here an example
+
+add_filter('affiliate_bridge_image_style_override_custom', 'my_ridiculous_wide_border_customization');
+
+function my_ridiculous_wide_border_customization($originalCss) {
+    // you can access the original css and add to it
+    $result = $originalCss . 'border:10px solid gray;';
+    // what you return would be the custom css option
+    return $res;
+}
+
 = Shortcode props =
 
 1. items - number of items to show. example: [affiliate-bridge items="4"] (default = 1)
 2. size - image size. options are: `small` | `medium` | `large`. example: [affiliate-bridge size="small"] (default = large)
-3. keywords - list of keywords for search. used to override the default you set in admin. example [affiliate-bridge keywords="baseball cards"]
+3. keywords - add search keywords (with spaces and other special characters). used to override the default you set in admin. example [affiliate-bridge keywords="baseball cards"]
 4. framed - choose what kind of image frame to use.  example [affiliate-bridge framed="C"]. (you can also use `affiliate_bridge_image_style_override_custom` filter to use you own customized css)
-5. categories -
+5. categories - ddd Category IDs, separated by a comma. Download eBay Categories. example [affiliate-bridge keywords="baseball cards"]
 6. condition - product condition. options are `All` | `New` | `Used`. example [affiliate-bridge condition="Used"] (default is `All`)
 7. defimage - link to default image. example [affiliate-bridge condition="https://example.com/wp-content/uploads/08/20/my-cool-image.png"] (default is `All`)
 8. source - currently no use. will be added in future versions.
