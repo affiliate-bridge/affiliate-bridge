@@ -1,0 +1,24 @@
+.ab-tbl-data {
+    text-align: center;
+    width: 25%;
+    vertical-align: middle !important;
+    border: 1px solid #dedede;
+    padding: 10px;
+}
+
+.ab-tbl-data-multi {
+    padding: 10px;
+    vertical-align: middle !important;
+    border: 1px solid #dedede;
+}
+
+.ab-tbl-error {
+    padding: 10px;
+    vertical-align: middle !important;
+    border: 1px solid #dedede;
+}
+
+.ab-tbl-image {
+    margin: 5px auto 5px auto;
+    display: block;
+}

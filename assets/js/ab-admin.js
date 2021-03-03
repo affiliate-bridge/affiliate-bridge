@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
     $('.upload-default-btn').click(function(e) {
-	    var thiss = $(this);
+	    var that = $(this);
         e.preventDefault();
         var image = wp.media({ 
             title: 'Upload Image',
@@ -15,8 +15,8 @@ jQuery(document).ready(function($){
             //console.log(uploaded_image.toJSON());
             var image_url = uploaded_image.toJSON().url;
             // Let's assign the url value to the input field
-            thiss.parent().find(".regular_def_image").val(image_url);
-            thiss.parent().find("#def_def_image").attr("src", image_url);
+            that.parent().find(".regular_def_image").val(image_url);
+            that.parent().find("#def_def_image").attr("src", image_url);
         });
     });
 });
