@@ -62,4 +62,4 @@ While still providing a professional and reliable product & coffee to go with th
   
 Distributed under the GPLv2 license. See ``LICENSE`` for more information.
 
-[https://github.com/stevorated-affiliate-bridge/affiliate-bridge](https://github.com/affiliate-bridge/affiliate-bridge)
+[https://github.com/affiliate-bridge/affiliate-bridge](https://github.com/affiliate-bridge/affiliate-bridge)
