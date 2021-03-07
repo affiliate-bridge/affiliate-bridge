@@ -69,7 +69,7 @@ If you'll keep this default setting, the plugin will use our affiliate account f
 On the other hand, if you insert (And save) your own affiliate id it will be used for approximately 85% of the refreshes. 
 The rest of the time it will use our affiliate code.
 We hope using this model will allow us to provide you with this great product, free of charge on your end. 
-While still providing a professional and reliable product ( & change for coffee once in a while :) ).
+While still providing a professional and reliable product ( & earn change for coffee once in a while :) ).
 
 ## Meta
 
