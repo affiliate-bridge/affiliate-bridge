@@ -65,7 +65,7 @@ function my_ridiculously_wide_border_customization($originalCss) {
 
 == Revenue Sharing Model ==
 
-In its free version, there is a Revenue Sharing Algorithm for splitting affiliate income between the user (the Website Owner) and the Affiliate Bridge plugin maker.
+In its free version, Affiliate Bridge uses a Revenue Sharing Algorithm for splitting affiliate income between the user (the Website Owner) and the Affiliate Bridge plugin maker.
 Based on the system clock, 85% of calls to the API will be made with The Website Owner's API Key.
 The rest of the calls (15%), will be using a hard codded "Affiliate Bridge plugin maker"'s API key.
 The Revenue Sharing Algorithm is in charge of the result being STATISTICALLY about 85% of the income generated from the Affiliate Program goes to the Website Owner, and the rest (about 15%) goes to the Plugin Owner.
