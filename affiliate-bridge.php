@@ -23,7 +23,7 @@ if (!class_exists('Affiliate_Bridge')) {
     {
         // general settings
         const PLUGIN_NAME = 'affiliate-bridge';
-        const EBAY_URL = 'http://www.ebay.com';
+        const EBAY_URL = 'https://www.ebay.com';
 
         // admin menu option
         const OPTION = 'affiliate-bridge-settings';
@@ -44,7 +44,6 @@ if (!class_exists('Affiliate_Bridge')) {
 
         public function __construct()
         {
-            $bla = __("test", "affiliate-bridge");
             $this->plugin_default_image = plugin_dir_url(__FILE__) . 'assets/images/affiliate-bridge-default-image.jpg';
 
             // Add plugin shortcode
@@ -62,7 +61,7 @@ if (!class_exists('Affiliate_Bridge')) {
         }
 
         /**
-         * Adds link to settings from plugins page
+         * Adds link to settings from plugins section
          * @param $links
          * @return mixed
          */
@@ -74,6 +73,9 @@ if (!class_exists('Affiliate_Bridge')) {
             return $links;
         }
 
+        /**
+         * Enqueues plugin frontend styles
+         */
         public function frontend_style()
         {
             wp_enqueue_style('affiliate-bridge-front-style', plugin_dir_url(__FILE__) . 'assets/css/styles.css');
@@ -111,7 +113,7 @@ if (!class_exists('Affiliate_Bridge')) {
         }
 
         /**
-         * TODO: maybe split
+         * TODO: should maybe split to 2 functions
          * Renders admin options menu && Handles save
          */
         public function render_backend()
@@ -161,6 +163,7 @@ if (!class_exists('Affiliate_Bridge')) {
          * update plugin options merge with defaults
          * @param $payload
          * array of keys-values to update in plugin's option
+         * @return bool
          */
         private function update_option($payload)
         {
@@ -228,15 +231,11 @@ if (!class_exists('Affiliate_Bridge')) {
 
                     break;
                 default:
-                    // TODO ASK WHAT IS THIS USED FOR
                     $framed = 'Y';
                     $imageCss = 'padding:2px; border: 2px solid gray;';
 
                     break;
             }
-
-            echo $framed;
-            echo $imageCss;
 
             $count = $items <= 1 ? 1 : $items;
             $entriesPerPage = intval($count) * 2;
@@ -346,6 +345,12 @@ if (!class_exists('Affiliate_Bridge')) {
             return ob_get_clean();
         }
 
+        /**
+         * randomizes the ab_app_id used by the plugin to be the
+         * default one 16% of the time
+         * and the on defined in settings for the rest of the time
+         * @return mixed
+         */
         public function randomize_ab_app_id()
         {
             $d = new DateTime();
@@ -359,8 +364,8 @@ if (!class_exists('Affiliate_Bridge')) {
         }
 
         /**
-         * call ebay services
          * calls ebay services api & returns response body
+         *
          * @param $ab_app_id
          * @param $entriesPerPage
          * @param $keywords
@@ -436,28 +441,16 @@ if (!class_exists('Affiliate_Bridge')) {
         }
     }
 
-    // run the plugin.
+    // runs the plugin.
     new Affiliate_Bridge();
 
-    // TODO ASK IF SHOULD BE UNINSTALL HOOK
-    // remove options when deactivating the plugin.
-    if (!function_exists('deactivate_affiliate_bridge')) {
-        register_deactivation_hook(__FILE__, 'deactivate_affiliate_bridge');
-        function deactivate_affiliate_bridge()
+    // removes options when uninstalling the plugin.
+    if (!function_exists('uninstall_affiliate_bridge')) {
+        register_uninstall_hook(__FILE__, 'uninstall_affiliate_bridge');
+        function uninstall_affiliate_bridge()
         {
             delete_option(Affiliate_Bridge::OPTION);
         }
-    }
-}
-
-// TODO: remove when publishing
-if (!function_exists('dier')) {
-    function dier($what)
-    {
-        echo '<pre>';
-        print_r($what);
-        echo '</pre>';
-        exit();
     }
 }
 

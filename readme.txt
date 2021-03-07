@@ -74,6 +74,11 @@ The rest of the time it will use our affiliate code.
 Using this model allows us to provide you this product, free of charge on your end.
 While still providing a professional and reliable product & coffee to go with that once in while :).
 
+== screenshots ==
+
+1. Plugin Settings.
+2. Multi-item Table example.
+
 == Changelog ==
 
 = 1.0.0 - Mar 13 2021 =
