@@ -1,10 +1,9 @@
-										=== CardCom Payment Gateway ===
-Contributors: cardcom
+=== Affiliate Bridge ===
 Donate link:
-Tags: woocommerce, payment-gateway, checkout
-Requires at least: 3.3
-Requires PHP: 5.3
+Tags: affiliate, ebay, bridge
+Requires at least: 5.0.0
 Tested up to: 5.6.2
+Requires PHP: 7.2
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
@@ -36,7 +35,7 @@ Affiliate Bridge allows you to effortlessly show affiliated items (only from eba
 
 = Minimum Requirements =
 
-* WordPress 5.6 or later
+* WordPress 5.0.0 or later
 * PHP version 7.2 or later
 
 == Frequently asked questions ==
