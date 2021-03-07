@@ -28,6 +28,7 @@ Affiliate Bridge allows you to effortlessly integrate affiliated items (only fro
 
 ### Q: How to use custom css filter?  
 ### A: Here's an example
+
 ```
 add_filter('affiliate_bridge_image_style_override_custom', 'my_ridiculously_wide_border_customization');
 
@@ -58,8 +59,13 @@ function my_ridiculously_wide_border_customization($originalCss) {
 
 ## Screenshots
 
-1. Plugin Settings. ("assets/screenshot-1.jpg")
-2. Multi Item Table Example. ("assets/screenshot-2.jpg")
+* Plugin Settings. ("assets/screenshot-1.jpg")  
+
+![](assets/images/screenshot-1.png)
+
+* Multi Item Table Example. ("assets/screenshot-2.jpg")
+
+![](assets/images/screenshot-2.png)
 
 ## Site
 
