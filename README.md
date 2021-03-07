@@ -53,7 +53,7 @@ function my_ridiculously_wide_border_customization($originalCss) {
 
 ## Minimum Requirements
 
-* WordPress 5.6 or later
+* WordPress 5.0.0 or later
 * PHP version 7.2 or later
 
 ## Release History
@@ -62,14 +62,13 @@ function my_ridiculously_wide_border_customization($originalCss) {
     * Initial Release
 
 ## Our Profit Model
-
-By default, the plugin uses our own affiliate account, can see that in the settings section. 
-This is in order to allow the user `plug and play` ability.
-If you'll keep this default setting, the plugin will use our affiliate account for 100% of the refreshes it makes.
-On the other hand, if you insert (And save) your own affiliate id it will be used for approximately 85% of the refreshes. 
-The rest of the time it will use our affiliate code.
-We hope using this model will allow us to provide you with this great product, free of charge on your end. 
-While still providing a professional and reliable product ( & earn change for coffee once in a while :) ).
+In its free version, there is a Revenue Sharing Algorithm for splitting affiliate income between the user (the Website Owner) and the Affiliate Bridge plugin maker.
+Based on the system clock, the implementation of this algorithm is done in a way that on 85% of the calls to the API, The Website Owner's API Key is attached to the call.
+The rest of the calls (15%), a hard codded, Affiliate Bridge plugin maker's API key is attached.
+Due to the nature affiliate programs, the result is configured so that over time, STATISTICALLY about 85% of the income generated from the Affiliate Program goes to the Website Owner,
+and the rest (about 15%) goes to the Plugin Owner.
+If the Website Owner does not change default setting, the plugin will use Affiliate Bridge plugin maker key 100% of the time.
+Using this model allows us to provide you this product, free of charge on your end, while still providing a professional and reliable product.. oh, and coffee to go with that :).
 
 ## Meta
 

@@ -26,14 +26,14 @@ Affiliate Bridge allows you to effortlessly show affiliated items (only from eba
 1. After installing and activating the Affiliate Bridge plugin in your WordPress website.
 2. Navigate to the plugin settings, by pressing settings link in plugin section or navigating to it `Settings->Affiliate Bridge`
 3. Set the default shortcode search attributes (i.e Keyword, category, condition, number of items etc.)
-4. Set the `main affiliate` account. to see what `main` means, checkout `Our profit model`
+4. Set the `main affiliate` account. to see what `main` means, check out `Revenue Sharing Model` section.
 5. Use the short code [affiliate-bridge] to show affiliated products.
 6. You can use the shortcode with the default settings, or override the defaults with shortcode props.
 7. Paste the code anywhere in your site
 8. Save
 9. Congratulations :D
 
-= Minimum Requirements =
+== Minimum Requirements ==
 
 * WordPress 5.0.0 or later
 * PHP version 7.2 or later
@@ -52,7 +52,7 @@ function my_ridiculous_wide_border_customization($originalCss) {
     return $res;
 }
 
-= Shortcode props =
+== Shortcode props ==
 
 1. items - number of items to show. example: [affiliate-bridge items="4"] (default = 1)
 2. size - image size. options are: `small` | `medium` | `large`. example: [affiliate-bridge size="small"] (default = large)
@@ -63,17 +63,17 @@ function my_ridiculous_wide_border_customization($originalCss) {
 7. defimage - link to default image. example [affiliate-bridge condition="https://example.com/wp-content/uploads/08/20/my-cool-image.png"] (default is `All`)
 8. source - currently no use. will be added in future versions.
 
-= Our profit model =
+== Revenue Sharing Model ==
 
-By default, the plugin uses our own affiliate account, can see that in the settings section.
-This is in order to allow the user `plug and play` ability.
-If you'll keep this default setting, the plugin will use our affiliate account for 100% of the refreshes it makes.
-On the other hand, if you insert (And save) your own affiliate id it will be used for approximately 85% of the refreshes.
-The rest of the time it will use our affiliate code.
-Using this model allows us to provide you this product, free of charge on your end.
-While still providing a professional and reliable product & coffee to go with that once in while :).
+In its free version, there is a Revenue Sharing Algorithm for splitting affiliate income between the user (the Website Owner) and the Affiliate Bridge plugin maker.
+Based on the system clock, the implementation of this algorithm is done in a way that on 85% of the calls to the API, The Website Owner's API Key is attached to the call.
+The rest of the calls (15%), a hard codded, Affiliate Bridge plugin maker's API key is attached.
+Due to the nature affiliate programs, the result is STATISTICALLY configured so that over time, about 85% of the income generated from the Affiliate Program goes to the Website Owner,
+and the rest (about 15%) goes to the Plugin Owner.
+If the Website Owner does not change default setting, the plugin will use Affiliate Bridge plugin maker key 100% of the time.
+Using this model allows us to provide you this product, free of charge on your end, while still providing a professional and reliable product.. oh, and also coffee to go with that :).
 
-== screenshots ==
+== Screenshots ==
 
 1. Plugin Settings.
 2. Multi-item Table example.

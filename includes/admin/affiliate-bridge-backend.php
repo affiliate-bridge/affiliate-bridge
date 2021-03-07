@@ -56,7 +56,9 @@ if (!isset($options) || !isset($defimage)) {
 			<th scope="row"><label for="categories"><?= __('Default Categories', 'affiliate-bridge'); ?></label></th>
 			<td>
 				<input name="ab_categories" type="text" id="categories" value="<?= $options['ab_categories']; ?>" class="regular-text" />
-				<small><?= __('Add Category IDs, separated by a comma. Download eBay Categories ', 'affiliate-bridge'); ?><a href="https://www.shelftrend.com/blog2/ebay-category-numbers-download-excel" target="_blank"><?= __('Here', 'affiliate-bridge'); ?></a></small>
+				<small><?= __('Add Category IDs, separated by a comma. Download eBay Categories ', 'affiliate-bridge'); ?>
+                    <a href="https://www.shelftrend.com/blog2/ebay-category-numbers-download-excel" target="_blank"><?= __('Here', 'affiliate-bridge'); ?></a>
+                </small>
 			</td>		
 		</tr>
 		<tr>
@@ -96,7 +98,14 @@ if (!isset($options) || !isset($defimage)) {
 				<div style="display:inline-block;">
 				    <input type="text" name="ab_def_image" class="original_mp3 regular_def_image regular-text" value="<?= ($options['ab_def_image']) ? $options['ab_def_image'] : $defimage; ?>"/>
 				    <input type="button" name="upload-btn-original" id="upload-btn" class="button-secondary upload-default-btn" value="Upload Image" /><br />
-				    <img id="def_def_image" src="<?= $options['ab_def_image'] ? $options['ab_def_image'] : $defimage; ?>" alt="def" title="Default Image (if eBay item does not have an image)" width="120" style="margin-top:10px;" />
+				    <img
+                            id="def_def_image"
+                            src="<?= $options['ab_def_image'] ? $options['ab_def_image'] : $defimage; ?>"
+                            alt="<?= __('def', 'affiliate-bridge') ?>"
+                            title="<?= __('Default Image (if eBay item does not have an image)', 'affiliate-bridge') ?>"
+                            width="120"
+                            style="margin-top:10px;"
+                    />
 				</div>
 			</td>
 		</tr>

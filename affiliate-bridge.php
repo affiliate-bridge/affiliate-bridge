@@ -49,13 +49,26 @@ if (!class_exists('Affiliate_Bridge')) {
             // Add plugin shortcode
             add_shortcode('affiliate_bridge', [$this, 'affiliate_bridge_output']);
 
+            $this->add_actions();
+            $this->add_filters();
+        }
+
+        /**
+         * Add plugin actions
+         */
+        private function add_actions() {
             // Add Option page
             add_action('admin_menu', [$this, 'add_menu']);
             add_action('admin_enqueue_scripts', [$this, 'admin_scripts']);
 
             // Add frontend style
             add_action('wp_enqueue_scripts', [$this, 'frontend_style']);
+        }
 
+        /**
+         * Add plugin filters
+         */
+        private function add_filters() {
             // Add link to settings from plugins page
             add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'settings_link']);
         }
@@ -104,8 +117,8 @@ if (!class_exists('Affiliate_Bridge')) {
         public function add_menu()
         {
             add_options_page(
-                __('Affiliate Bridge', ''),
-                __('Affiliate Bridge', ''),
+                __('Affiliate Bridge', 'affiliate-bridge'),
+                __('Affiliate Bridge', 'affiliate-bridge'),
                 'manage_options',
                 'affiliate-bridge-backend',
                 [$this, 'render_backend'],
@@ -121,15 +134,15 @@ if (!class_exists('Affiliate_Bridge')) {
             $data = [];
 
             if (isset($_POST['ab_submit'])) {
-                $data['ab_source'] = (isset($_POST['ab_source']) ? $_POST['ab_source'] : '');
-                $data['ab_app_id'] = (isset($_POST['ab_app_id']) ? $_POST['ab_app_id'] : '');
-                $data['ab_keywords'] = (isset($_POST['ab_keywords']) ? $_POST['ab_keywords'] : '');
-                $data['ab_framed'] = (isset($_POST['ab_framed']) ? $_POST['ab_framed'] : '');
-                $data['ab_categories'] = (isset($_POST['ab_categories']) ? $_POST['ab_categories'] : '');
-                $data['ab_image_size'] = (isset($_POST['ab_image_size']) ? $_POST['ab_image_size'] : '');
-                $data['ab_items'] = (isset($_POST['ab_items']) ? $_POST['ab_items'] : '');
-                $data['ab_def_image'] = (isset($_POST['ab_def_image']) ? $_POST['ab_def_image'] : '');
-                $data['ab_condition'] = (isset($_POST['ab_condition']) ? $_POST['ab_condition'] : '');
+                $data['ab_source'] = isset($_POST['ab_source']) ? $_POST['ab_source'] : '';
+                $data['ab_app_id'] = isset($_POST['ab_app_id']) ? $_POST['ab_app_id'] : '';
+                $data['ab_keywords'] = isset($_POST['ab_keywords']) ? $_POST['ab_keywords'] : '';
+                $data['ab_framed'] = isset($_POST['ab_framed']) ? $_POST['ab_framed'] : '';
+                $data['ab_categories'] = isset($_POST['ab_categories']) ? $_POST['ab_categories'] : '';
+                $data['ab_image_size'] = isset($_POST['ab_image_size']) ? $_POST['ab_image_size'] : '';
+                $data['ab_items'] = isset($_POST['ab_items']) ? $_POST['ab_items'] : '';
+                $data['ab_def_image'] = isset($_POST['ab_def_image']) ? $_POST['ab_def_image'] : '';
+                $data['ab_condition'] = isset($_POST['ab_condition']) ? $_POST['ab_condition'] : '';
 
                 $this->update_option($data);
             }
@@ -138,7 +151,7 @@ if (!class_exists('Affiliate_Bridge')) {
             // DONT REMOVE - used in the template
             $options = $this->get_option();
             $defimage = $this->plugin_default_image;
-            include_once('includes/admin/affiliate_bridge_backend.php');
+            include_once('includes/admin/affiliate-bridge-backend.php');
             $content = ob_get_clean();
             echo $content;
         }
