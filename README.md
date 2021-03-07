@@ -68,8 +68,8 @@ This is in order to allow the user `plug and play` ability.
 If you'll keep this default setting, the plugin will use our affiliate account for 100% of the refreshes it makes.
 On the other hand, if you insert (And save) your own affiliate id it will be used for approximately 85% of the refreshes. 
 The rest of the time it will use our affiliate code.
-Using this model allows us to provide you this product, free of charge on your end. 
-While still providing a professional and reliable product & coffee to go with that once in while :).
+We hope using this model will allow us to provide you with this great product, free of charge on your end. 
+While still providing a professional and reliable product ( & change for coffee once in a while :) ).
 
 ## Meta
 
