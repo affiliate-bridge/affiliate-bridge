@@ -44,7 +44,7 @@ if (!class_exists('Affiliate_Bridge')) {
 
         public function __construct()
         {
-            $this->plugin_default_image = plugin_dir_url(__FILE__) . 'assets/images/affiliate-bridge-default-image.jpg';
+            $this->plugin_default_image = plugin_dir_url(__FILE__) . 'assets/images/ab-default-image.jpg';
 
             // Add plugin shortcode
             add_shortcode('affiliate_bridge', [$this, 'affiliate_bridge_output']);
