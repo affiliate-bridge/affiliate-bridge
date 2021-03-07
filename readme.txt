@@ -12,7 +12,7 @@ Affiliate Bridge for wordpress.
 
 == Description ==
 
-Affiliate Bridge allows you to effortlessly show affiliated items (only from ebay for now) in your site.
+Affiliate Bridge allows you to effortlessly integrate affiliated items (only from ebay for now) in your site.
 
 == Installation ==
 
@@ -43,9 +43,9 @@ Affiliate Bridge allows you to effortlessly show affiliated items (only from eba
 Q: How to use custom css filter?
 A: Here an example
 
-add_filter('affiliate_bridge_image_style_override_custom', 'my_ridiculous_wide_border_customization');
+add_filter('affiliate_bridge_image_style_override_custom', 'my_ridiculously_wide_border_customization');
 
-function my_ridiculous_wide_border_customization($originalCss) {
+function my_ridiculously_wide_border_customization($originalCss) {
     // you can access the original css and add to it
     $result = $originalCss . 'border:10px solid gray;';
     // what you return would be the custom css option
@@ -76,14 +76,19 @@ Using this model allows us to provide you this product, free of charge on your e
 == Screenshots ==
 
 1. Plugin Settings.
-2. Multi-item Table example.
+2. Multi Item Table Example.
+
+== Site ==
+
+https://affiliate-bridge.com/
+https://www.bicycle-riding.com/
 
 == Changelog ==
 
 = 1.0.0 - Mar 13 2021 =
 * Initial Release
 
-== Upgrade notice ==
+== Upgrade Notice ==
 
-== Arbitrary section 1 ==
+Distributed under the GPLv2 license. See ``LICENSE`` for more information.
 

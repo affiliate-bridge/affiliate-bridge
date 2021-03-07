@@ -1,9 +1,9 @@
 # Affiliate Bridge
 > Effortlessly show affiliate items in your site.
 
-Affiliate Bridge allows you to effortlessly show affiliated items (only from ebay for now) in your site.
+Affiliate Bridge allows you to effortlessly integrate affiliated items (only from ebay for now) in your site.
 
-![](assets/images/affiliate-bridge-default-image.jpg)
+![](assets/images/ab-default-image.jpg)
 
 ## Installation
 
@@ -56,12 +56,23 @@ function my_ridiculously_wide_border_customization($originalCss) {
 * WordPress 5.0.0 or later
 * PHP version 7.2 or later
 
-## Release History
+## Screenshots
+
+1. Plugin Settings. ("assets/screenshot-1.jpg")
+2. Multi Item Table Example. ("assets/screenshot-2.jpg")
+
+## Site
+
+https://affiliate-bridge.com/
+https://www.bicycle-riding.com/
+
+## Changelog
 
 * 1.0.0
     * Initial Release
 
 ## Our Profit Model
+
 In its free version, there is a Revenue Sharing Algorithm for splitting affiliate income between the user (the Website Owner) and the Affiliate Bridge plugin maker.
 Based on the system clock, the implementation of this algorithm is done in a way that on 85% of the calls to the API, The Website Owner's API Key is attached to the call.
 The rest of the calls (15%), a hard codded, Affiliate Bridge plugin maker's API key is attached.
@@ -73,7 +84,7 @@ Using this model allows us to provide you this product, free of charge on your e
 ## Meta
 
 [Our Site](https://affiliate-bridge.com/)  
-[David Lidor](https://www.bicycle.com/)  
+[David Lidor](https://www.bicycle-riding.com/)  
   
 Distributed under the GPLv2 license. See ``LICENSE`` for more information.
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Affiliate Bridge
  * Plugin URI:  https://affiliate-bridge.com
- * Description: Affiliate Bridge.
+ * Description: Affiliate Bridge allows you to effortlessly integrate affiliated items (only from ebay for now) in your site
  * Version:     1.0.0
  * Author:      David Lidor
  * Author URI:  https://www.bicycle-riding.com
