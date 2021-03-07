@@ -66,12 +66,11 @@ function my_ridiculously_wide_border_customization($originalCss) {
 == Revenue Sharing Model ==
 
 In its free version, there is a Revenue Sharing Algorithm for splitting affiliate income between the user (the Website Owner) and the Affiliate Bridge plugin maker.
-Based on the system clock, the implementation of this algorithm is done in a way that on 85% of the calls to the API, The Website Owner's API Key is attached to the call.
-The rest of the calls (15%), a hard codded, Affiliate Bridge plugin maker's API key is attached.
-Due to the nature affiliate programs, the result is STATISTICALLY configured so that over time, about 85% of the income generated from the Affiliate Program goes to the Website Owner,
-and the rest (about 15%) goes to the Plugin Owner.
+Based on the system clock, 85% of calls to the API will be made with The Website Owner's API Key.
+The rest of the calls (15%), will be using a hard codded "Affiliate Bridge plugin maker"'s API key.
+The Revenue Sharing Algorithm is in charge of the result being STATISTICALLY about 85% of the income generated from the Affiliate Program goes to the Website Owner, and the rest (about 15%) goes to the Plugin Owner.
 If the Website Owner does not change default setting, the plugin will use Affiliate Bridge plugin maker key 100% of the time.
-Using this model allows us to provide you this product, free of charge on your end, while still providing a professional and reliable product.. oh, and also coffee to go with that :).
+Using this Revenue Sharing Model allows us to provide this product free of charge, on The Website Owner's end, while still providing a professional and reliable product.. oh, and also coffee to go with that :).
 
 == Screenshots ==
 
