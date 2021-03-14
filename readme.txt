@@ -1,5 +1,6 @@
 === Affiliate Bridge ===
-Donate link:
+Contributors: affiliatebridge, David Lidor
+Donate link: https://affiliate-bridge.com
 Tags: affiliate, ebay, bridge
 Requires at least: 5.0.0
 Tested up to: 5.6.2
