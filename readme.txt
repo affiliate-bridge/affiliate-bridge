@@ -1,5 +1,5 @@
 === Affiliate Bridge ===
-Contributors: affiliatebridge, David Lidor
+Contributors: affiliatebridge, David Lidor, stevorated
 Donate link: https://affiliate-bridge.com
 Tags: affiliate, ebay, bridge
 Requires at least: 5.0.0
