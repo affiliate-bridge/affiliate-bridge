@@ -56,7 +56,8 @@ if (!class_exists('Affiliate_Bridge')) {
         /**
          * Add plugin actions
          */
-        private function add_actions() {
+        private function add_actions()
+        {
             // Add Option page
             add_action('admin_menu', [$this, 'add_menu']);
             add_action('admin_enqueue_scripts', [$this, 'admin_scripts']);
@@ -68,7 +69,8 @@ if (!class_exists('Affiliate_Bridge')) {
         /**
          * Add plugin filters
          */
-        private function add_filters() {
+        private function add_filters()
+        {
             // Add link to settings from plugins page
             add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'settings_link']);
         }
@@ -126,34 +128,181 @@ if (!class_exists('Affiliate_Bridge')) {
         }
 
         /**
+         * Render error messages
+         * @param $messages
+         * @param string $class
+         */
+        private function show_errors($messages, $class = 'notice notice-error is-dismissible')
+        {
+            foreach ($messages as $message) {
+                printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
+            }
+        }
+
+        /**
+         * Render warnings messages
+         * @param $messages
+         * @param string $class
+         */
+        private function show_warnings($messages, $class = 'notice notice-warning is-dismissible')
+        {
+            foreach ($messages as $message) {
+                printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
+            }
+        }
+
+        /**
+         * Render success notifications
+         */
+        private function show_success()
+        {
+            ?>
+            <div class="notice notice-success is-dismissible">
+                <p><?php echo __('Saved!', 'affiliate-bridge'); ?></p>
+            </div>
+            <?php
+        }
+
+        /**
          * TODO: should maybe split to 2 functions
          * Renders admin options menu && Handles save
          */
         public function render_backend()
         {
-            $data = [];
+            $errors = [];
+            $warnings = [];
+            $ab_submit = isset($_POST['ab_submit']) ? sanitize_text_field($_POST['ab_submit']) : false;
 
-            if (isset($_POST['ab_submit'])) {
-                $data['ab_source'] = isset($_POST['ab_source']) ? $_POST['ab_source'] : '';
-                $data['ab_app_id'] = isset($_POST['ab_app_id']) ? $_POST['ab_app_id'] : '';
-                $data['ab_keywords'] = isset($_POST['ab_keywords']) ? $_POST['ab_keywords'] : '';
-                $data['ab_framed'] = isset($_POST['ab_framed']) ? $_POST['ab_framed'] : '';
-                $data['ab_categories'] = isset($_POST['ab_categories']) ? $_POST['ab_categories'] : '';
-                $data['ab_image_size'] = isset($_POST['ab_image_size']) ? $_POST['ab_image_size'] : '';
-                $data['ab_items'] = isset($_POST['ab_items']) ? $_POST['ab_items'] : '';
-                $data['ab_def_image'] = isset($_POST['ab_def_image']) ? $_POST['ab_def_image'] : '';
-                $data['ab_condition'] = isset($_POST['ab_condition']) ? $_POST['ab_condition'] : '';
+            if ($ab_submit) {
+                $data = $this->sanitize_admin($ab_submit);
+                $check = $this->validate_admin($data);
 
-                $this->update_option($data);
+                $errors = $check[0];
+                $warnings = $check[1];
+
+                if (!count($errors)) {
+                    $this->update_option($data);
+                }
             }
 
             ob_start();
             // DONT REMOVE - used in the template
             $options = $this->get_option();
             $defimage = $this->plugin_default_image;
+
+            $this->handle_errors($ab_submit, $errors, $warnings);
+
             include_once('includes/admin/affiliate-bridge-backend.php');
             $content = ob_get_clean();
             echo $content;
+        }
+
+        private function sanitize_admin($ab_submit)
+        {
+            $data = [];
+
+            if ($ab_submit) {
+                $data['ab_source'] = isset($_POST['ab_source']) ? sanitize_text_field($_POST['ab_source']) : '';
+                $data['ab_app_id'] = isset($_POST['ab_app_id']) ? sanitize_text_field($_POST['ab_app_id']) : '';
+                $data['ab_keywords'] = isset($_POST['ab_keywords']) ? sanitize_text_field($_POST['ab_keywords']) : '';
+                $data['ab_framed'] = isset($_POST['ab_framed']) ? sanitize_text_field($_POST['ab_framed']) : '';
+                $data['ab_categories'] = isset($_POST['ab_categories']) ? sanitize_text_field($_POST['ab_categories']) : '';
+                $data['ab_condition'] = isset($_POST['ab_condition']) ? sanitize_text_field($_POST['ab_condition']) : '';
+                $data['ab_image_size'] = isset($_POST['ab_image_size']) ? sanitize_text_field($_POST['ab_image_size']) : '';
+                $data['ab_items'] = isset($_POST['ab_items']) ? sanitize_text_field($_POST['ab_items']) : '';
+                $data['ab_def_image'] = isset($_POST['ab_def_image']) ? sanitize_text_field($_POST['ab_def_image']) : '';
+            }
+
+            return $data;
+        }
+
+        private function validate_admin($data = [])
+        {
+            $errors = [];
+            $warnings = [];
+
+            if (!isset($data['ab_source']) || !in_array($data['ab_source'], ['ebay', 'ebay(US)'])) {
+                $errors[] = __('Something Went Wrong, please refresh and try again');
+            }
+
+            if (isset($data['ab_app_id']) && strlen($data['ab_app_id']) > 40) {
+                $errors[] = __('App ID is required to shorter than 40', 'affiliate-bride');
+            } else if (!isset($data['ab_app_id'])) {
+                $errors[] = __('Something Went Wrong, please refresh and try again');
+            }
+
+            if (
+                (!isset($data['ab_keywords'])
+                    || isset($data['ab_keywords']) && $data['ab_keywords'] === '')
+                &&
+                (!isset($data['ab_categories'])
+                    || (isset($data['ab_categories']) && $data['ab_categories'] === ''))
+            ) {
+                $warnings[] = __('It\'s recommended you insert either Default Keywords or Default categories unless you will not see pictures', 'affiliate-bride');
+            }
+
+            if (!isset($data['ab_framed']) || !in_array($data['ab_framed'], ['N', 'Y', 'C'])) {
+                $errors[] = __('Something Went Wrong, please refresh and try again', 'affiliate-bride');
+            }
+
+            if (!isset($data['ab_condition']) || !in_array($data['ab_condition'], ['All', 'New', 'Used'])) {
+                $errors[] = __('Something went wrong. please try again later.', 'affiliate-bride');
+            }
+
+            if (
+                !isset($data['ab_image_size'])
+                || !in_array($data['ab_image_size'], ['small', 'medium', 'large'])
+            ) {
+                $errors[] = __('Image size possible options small|medium|large.', 'affiliate-bride');
+            }
+
+            if (
+                !isset($data['ab_items']) || isset($data['ab_items']) && (!is_numeric($data['ab_items']) || intval($data['ab_items']) <= 0)
+            ) {
+                $errors[] = __('Items must be a number.', 'affiliate-bride');
+            }
+
+            if (
+                !isset($data['ab_def_image']) || isset($data['ab_def_image']) && !$this->is_valid_url($data['ab_def_image'])
+            ) {
+                $errors[] = __('Default Image must be a valid image url.', 'affiliate-bride');
+            }
+
+            return [$errors, $warnings];
+        }
+
+        /**
+         * @param $web_file
+         * @return false|mixed|resource
+         */
+        private function is_valid_url($web_file)
+        {
+            $fp = @fopen($web_file, "r");
+            if ($fp !== false)
+                fclose($fp);
+
+            return ($fp);
+        }
+
+        /**
+         * @param $errors
+         * @param $warnings
+         * @param $abSubmit
+         */
+        private function handle_errors($abSubmit, $errors = [], $warnings = [])
+        {
+            $is_errors = count($errors) > 0;
+            $is_warn = count($warnings) > 0;
+
+            if ($abSubmit && $is_errors) {
+                $this->show_errors($errors);
+            } else if ($abSubmit && !$is_errors) {
+                $this->show_success();
+            }
+
+            if ($abSubmit && $is_warn) {
+                $this->show_warnings($warnings);
+            }
         }
 
 
@@ -193,6 +342,39 @@ if (!class_exists('Affiliate_Bridge')) {
         }
 
         /**
+         * @param array $atts
+         * @return array
+         */
+        private function sanitize_and_validate_atts(array $atts)
+        {
+            $res = [];
+            foreach ($atts as $key => $val) {
+                $key = sanitize_text_field($key);
+                switch ($key) {
+                    case 'source':
+                        $sanitized = sanitize_text_field($val);
+                        $sanitized = in_array($val, ['ebay', 'ebay(US)', 'eBay(US)', 'eBay']) ? $sanitized : '';
+                        break;
+                    case 'categories':
+                        $sanitized = sanitize_text_field($val);
+                        $sanitized = in_array($sanitized, ['All', 'Used', 'New']) ? $sanitized : '';
+                        break;
+                    case 'items':
+                        $sanitized = sanitize_text_field($val);
+                        $sanitized = is_numeric($sanitized) ? $sanitized : 1;
+                        break;
+                    default:
+                        $sanitized = sanitize_text_field($val);
+                        break;
+                }
+
+                $res[$key] = $sanitized;
+            }
+
+            return $res;
+        }
+
+        /**
          * Generate plugin shortcode
          * @param array $atts
          * optional keys are:
@@ -214,6 +396,8 @@ if (!class_exists('Affiliate_Bridge')) {
                 'defimage' => ''
             ), $atts);
 
+            $atts = $this->sanitize_and_validate_atts($atts);
+
             $options = $this->get_option();
             $ab_app_id = $this->randomize_ab_app_id();
 
@@ -233,33 +417,33 @@ if (!class_exists('Affiliate_Bridge')) {
 
             switch ($framed) {
                 case 'N':
-                    $imageCss = '';
+                    $image_css = '';
                     break;
                 case 'C':
-                    $imageCss = 'border:3px solid gray;border-collapse: separate; -moz-border-radius: 8px; border-radius: 8px; box-shadow: 0px 0px 10px #888;';
+                    $image_css = 'border:3px solid gray;border-collapse: separate; -moz-border-radius: 8px; border-radius: 8px; box-shadow: 0px 0px 10px #888;';
 
-                    if($imageCssOverride = apply_filters('affiliate_bridge_image_style_override_custom', $imageCss)) {
-                        $imageCss = $imageCssOverride;
+                    if ($image_css_override = apply_filters('affiliate_bridge_image_style_override_custom', $image_css)) {
+                        $image_css = sanitize_text_field($image_css_override);
                     }
 
                     break;
                 default:
                     $framed = 'Y';
-                    $imageCss = 'padding:2px; border: 2px solid gray;';
+                    $image_css = 'padding:2px; border: 2px solid gray;';
 
                     break;
             }
 
             $count = $items <= 1 ? 1 : $items;
-            $entriesPerPage = intval($count) * 2;
+            $entries_per_page = intval($count);
 
             if (strcasecmp($count, "1") == 0) {
-                $entriesPerPage = 1;
+                $entries_per_page = 1;
             }
 
             $list_items = [];
 
-            $result = $this->callSVSC($ab_app_id, $entriesPerPage, $keywords, $cats, $condition);
+            $result = $this->callSVSC($ab_app_id, $entries_per_page, $keywords, $cats, $condition);
 
             // prepare data
             if (
@@ -275,7 +459,9 @@ if (!class_exists('Affiliate_Bridge')) {
             }
 
             ob_start();
-            $failMsg = 'No ' . '"' . $keywords . '" (' . $condition . ' condition) found on <a href="' . self::EBAY_URL . '" target="_blank">' . $source . '</a>';
+
+            $fail_message = 'No ' . '"' . esc_attr($keywords) . '" (' . $condition . ' condition) found on <a href="' . esc_url(self::EBAY_URL) . '" target="_blank">' . $source . '</a>';
+
             // handle no list items
             if (empty($list_items)) {
                 // NO RESPONSE - single photo
@@ -293,9 +479,9 @@ if (!class_exists('Affiliate_Bridge')) {
 
 
             if ($items <= 1) {
-                echo $this->get_single_item($ab_app_id, $find_items, $failMsg, $size, $defimage, $imageCss);
+                echo $this->get_single_item($ab_app_id, $fail_message, $defimage, $image_css, $find_items, $size);
             } else {
-                echo $this->get_multiple_item($ab_app_id, $find_items, $failMsg, $size, $defimage, $imageCss, $count);
+                echo $this->get_multiple_item($ab_app_id, $fail_message, $defimage, $count, $image_css, $find_items, $size);
             }
 
             return ob_get_clean();
@@ -305,13 +491,13 @@ if (!class_exists('Affiliate_Bridge')) {
          * handle single item rendering
          * @param $ab_app_id
          * @param string $find_items
-         * @param $failMsg
+         * @param $fail_message
          * @param string $size
          * @param $defimage
-         * @param string $imageCss
+         * @param string $image_css
          * @return false|string
          */
-        public function get_single_item($ab_app_id, $find_items = "", $failMsg, $size = "", $defimage, $imageCss = "")
+        public function get_single_item($ab_app_id, $fail_message, $defimage, $image_css = "", $find_items = "", $size = "")
         {
             ob_start();
             $result = $this->call_shopping_open_api($ab_app_id, $find_items);
@@ -322,7 +508,7 @@ if (!class_exists('Affiliate_Bridge')) {
 
                 return ob_get_clean();
             } else {
-                echo $failMsg;
+                echo $fail_message;
                 return ob_get_clean();
             }
         }
@@ -331,28 +517,28 @@ if (!class_exists('Affiliate_Bridge')) {
          * handle multiple item rendering
          * @param $ab_app_id
          * @param string $find_items
-         * @param $failMsg
+         * @param $fail_message
          * @param string $size
          * @param $defimage
-         * @param string $imageCss
+         * @param string $image_css
          * @param $count
          * @return false|string
          */
-        public function get_multiple_item($ab_app_id, $find_items = "", $failMsg, $size = "", $defimage, $imageCss = "", $count)
+        public function get_multiple_item($ab_app_id, $fail_message, $defimage, $count, $image_css = "", $find_items = "", $size = "")
         {
             ob_start();
+
 
             $result = $this->call_shopping_open_api($ab_app_id, $find_items, 1);
 
             if (!empty($result) && $result['Ack'] == "Success" && isset($result['Item'])) {
-
                 $items = $result['Item'];
 
-                include_once('includes/frontend/multi-table.php');
+                include('includes/frontend/multi-table.php');
 
             } else {
                 $pic = $defimage;
-                include_once('includes/frontend/empty-multi.php');
+                include('includes/frontend/empty-multi.php');
             }
 
             return ob_get_clean();

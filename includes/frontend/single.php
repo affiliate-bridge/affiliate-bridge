@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if(!isset($item) || !isset($size) || !isset($defimage) || !isset($imageCss)) {
+if (!isset($item) || !isset($size) || !isset($defimage) || !isset($image_css)) {
     error_log('exit single.php');
     exit;
 }
@@ -23,55 +23,46 @@ if ($item['PictureURL'] != null) {
 
 // fallbacks
 $alt = "$title ($priceTitle)";
-$showTitle = false;
-$border = 'border="0"';
-$width = 'width="' . $size .'"';
 $height = '';
 $showTitle = true;
 
-if(!isset($pic)) {
+if (!isset($pic)) {
     $pic = $defimage;
 }
 
 if ($title && $itemURL && $size == "small"):
-$border = 'border="0"';
-$width= 'width="110"';
-$height= 'height="90"';
-$showTitle = false;
+    $image_css .= 'width:110px; border: 0;';
+    $showTitle = false;
 elseif ($title && $itemURL && $size == "medium"):
-$border = 'border="90"';
-$width= 'width="110"';
-$height= 'height="90"';
-$showTitle = false;
+    $image_css .= 'width:200px; border: 90;';
+    $showTitle = false;
 elseif ($title && $itemURL && $size == "large"):
-$border = 'border="0"';
-$width= 'width="400"';
-$height= '';
+    $image_css .= 'width:400px; border: 0;';
 
+else:
+    $image_css .= 'border: 0;';
+    $image_css .= "width: $size;";
 endif;
 ?>
 
 <p>
 <div style="text-align: center;">
-    <a href="<?= $itemURL; ?>" target="_blank">
+    <a href="<?php echo esc_url($itemURL); ?>" target="_blank">
         <img
-            style="<?= $imageCss; ?>"
-            src="<?= $pic; ?>"
-            <?= $border; ?>
-            <?= $width; ?>
-            <?= $height; ?>
-            alt="<?= $alt; ?>"
-            title="<?= $alt; ?>"
+                style="<?php echo esc_attr($image_css); ?>"
+                src="<?php echo esc_url($pic); ?>"
+                alt="<?php echo esc_attr($alt); ?>"
+                title="<?php echo esc_attr($alt); ?>"
         >
     </a>
 </div>
-<?php if($showTitle): ?>
-<div style="text-align: center;">
-    <a href="<?= $itemURL; ?>" target="_blank">
-        <?= $title; ?>
-        <br/>
-        <b>(<?= $priceTitle; ?>)</b>
-    </a>
-</div>
+<?php if ($showTitle): ?>
+    <div style="text-align: center;">
+        <a href="<?php echo esc_url($itemURL); ?>" target="_blank">
+            <?php echo esc_attr($title); ?>
+            <br/>
+            <b>(<?php echo esc_attr($priceTitle); ?>)</b>
+        </a>
+    </div>
 <?php endif; ?>
 </p>

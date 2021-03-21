@@ -1,36 +1,40 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
-if (!isset($size) || !isset($defimage) || !isset($failMsg) || !isset($imageCss)) {
+if (!isset($size) || !isset($defimage) || !isset($fail_message) || !isset($image_css)) {
     error_log('exit empty-single.php');
     exit;
 }
 if ($size == "small"):
-    $size = "120";
-    $failMsg = false;
+    $image_css .= 'width: 120px;';
+    $fail_message = false;
 elseif ($size == "medium"):
-    $size = "180";
-    $failMsg = false;
+    $image_css .= 'width: 180px;';
+    $fail_message = false;
 elseif ($size == "large"):
-    $size = "400";
+    $image_css .= 'width: 400px;';
+else:
+    $image_css .= "width: $size;";
 endif;
+
+$image_css .= 'border: 0;';
+//echo $image_css;
 ?>
 
 <p>
 <div style="text-align: center;">
     <img
-            style="<?= $imageCss; ?>"
-            src="<?= $defimage; ?>"
-            border="0"
-            width="<?= $size; ?>"
-            alt="Default Image"
-            title="Default Image"
+            style="<?php echo esc_attr($image_css); ?>"
+            src="<?php echo esc_url($defimage); ?>"
+            alt="<?php echo __('Default Image', 'affiliate-bridge'); ?>"
+            title="<?php echo __('Default Image', 'affiliate-bridge'); ?>"
     />
 </div>
-<?php if ($failMsg): ?>
+<?php if ($fail_message): ?>
     <div style="text-align: center;">
-        <b><?= $failMsg; ?></b>
+        <b><?php echo $fail_message; ?></b>
     </div>
 <?php endif; ?>
 </p>

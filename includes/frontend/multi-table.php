@@ -1,9 +1,10 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit;
 }
 
-if(!isset($imageCss)) {
+if(!isset($image_css)) {
     error_log('exit multi-table.php');
     exit;
 }
@@ -11,6 +12,8 @@ if(!isset($imageCss)) {
 if (!isset($items)) {
     $items = [];
 }
+
+$image_css .= 'border: 0;';
 
 ?>
 
@@ -33,43 +36,44 @@ if (!isset($items)) {
             break;
         }
 
-        $ConditionDisplayName = isset($item['ConditionDisplayName']) ? $item['ConditionDisplayName'] . ' - ' : '';
+        $ConditionDisplayName = isset($item['ConditionDisplayName']) ? sanitize_text_field($item['ConditionDisplayName']) . ' - ' : '';
         $CurrentPrice = $item['CurrentPrice'];
-        $priceTitle = $ConditionDisplayName . $CurrentPrice['Value'] . ' ' . $CurrentPrice['CurrencyID'];
-        $title = $item['Title'];
+        $priceTitle = $ConditionDisplayName . sanitize_text_field($CurrentPrice['Value']) . ' ' . sanitize_text_field($CurrentPrice['CurrencyID']);
+        $title = sanitize_text_field($item['Title']);
+
         if (in_array($title, $titles) || in_array($priceTitle, $priceTitles)) {
             continue;
         }
+
         if (!empty($item['PictureURL'])) {
-            $pic = $item['PictureURL'][0];
+            $pic = sanitize_text_field($item['PictureURL'][0]);
         } else {
-            $pic = $item['GalleryURL'];
+            $pic = sanitize_text_field($item['GalleryURL']);
         }
 
         if (!$pic && $defimage) {
             $pic = $defimage;
         }
 
-        $itemURL = $item['ViewItemURLForNaturalSearch'];
+        $itemURL = sanitize_text_field($item['ViewItemURLForNaturalSearch']);
         $alt = "$title ($priceTitle)";
+
         ?>
         <tr>
             <td align=center valign=top class="ab-tbl-data">
-                <a href="<?= $itemURL; ?>" target="_blank">
+                <a href="<?php echo esc_url($itemURL); ?>" target="_blank">
                     <img
-                            style="margin: 5px auto 5px auto;
-                display: block; <?= $imageCss; ?>"
-                            src="<?= $pic; ?>"
-                            border="0"
-                            alt="<?= $alt; ?>"
-                            title="<?= $alt ?>"
+                            style="margin: 5px auto 5px auto; display: block; <?php echo esc_attr($image_css); ?>"
+                            src="<?php echo esc_attr($pic); ?>"
+                            alt="<?php echo esc_attr($alt); ?>"
+                            title="<?php echo esc_attr($alt) ?>"
                     />
                 </a></td>
             <td align="center" valign="bottom" class="ab-tbl-data-multi">
-                <a href="<?= $itemURL; ?>" target="_blank">
-                    <?= $title; ?>
+                <a href="<?php echo esc_url($itemURL); ?>" target="_blank">
+                    <?php echo esc_attr($title); ?>
                     <br/>
-                    <b><?= $priceTitle ?></b>
+                    <b><?php echo esc_attr($priceTitle) ?></b>
                 </a>
             </td>
         </tr>
