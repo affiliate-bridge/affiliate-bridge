@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Affiliate Bridge
  * Plugin URI:  https://affiliate-bridge.com
- * Description: Affiliate Bridge allows you to effortlessly integrate affiliated items (only from ebay for now) in your site
- * Version:     1.0.0
+ * Description: Easily add product images from affiliate programs using shortcodes.
+ * Version:     1.0.1
  * Author:      David Lidor
  * Author URI:  https://www.bicycle-riding.com
  * License:     GPL-2.0+
@@ -47,7 +47,7 @@ if (!class_exists('Affiliate_Bridge')) {
             $this->plugin_default_image = plugin_dir_url(__FILE__) . 'assets/images/ab-default-image.jpg';
 
             // Add plugin shortcode
-            add_shortcode('affiliate_bridge', [$this, 'affiliate_bridge_output']);
+            add_shortcode('affiliate-bridge', [$this, 'affiliate_bridge_output']);
 
             $this->add_actions();
             $this->add_filters();

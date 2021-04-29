@@ -21,4 +21,5 @@
 .ab-tbl-image {
     margin: 5px auto 5px auto;
     display: block;
+    max-width: 100%;
 }

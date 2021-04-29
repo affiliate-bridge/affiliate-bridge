@@ -53,6 +53,7 @@ endif;
                 src="<?php echo esc_url($pic); ?>"
                 alt="<?php echo esc_attr($alt); ?>"
                 title="<?php echo esc_attr($alt); ?>"
+                class="ab-tbl-image"
         >
     </a>
 </div>

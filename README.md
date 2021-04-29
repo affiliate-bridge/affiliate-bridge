@@ -1,5 +1,5 @@
 # Affiliate Bridge
-> Effortlessly show affiliate items in your site.
+> Easily add product images from affiliate programs using shortcodes.
 
 Affiliate Bridge allows you to effortlessly integrate affiliated items (only from ebay for now) in your site.
 
@@ -43,13 +43,13 @@ function my_ridiculously_wide_border_customization($originalCss) {
 
 ## Shortcode props
 
-1. items - number of items to show. example: [affiliate-bridge items="4"] (default = 1)
-2. size - image size. options are: `small` | `medium` | `large`. example: [affiliate-bridge size="small"] (default = large)
-3. keywords - add search keywords (with spaces and other special characters). used to override the default you set in admin. example [affiliate-bridge keywords="baseball cards"]
-4. framed - choose what kind of image frame to use.  example [affiliate-bridge framed="C"]. (you can also use `affiliate_bridge_image_style_override_custom` filter to use you own customized css)
-5. categories - ddd Category IDs, separated by a comma. Download eBay Categories. example [affiliate-bridge keywords="baseball cards"]
-6. condition - product condition. options are `All` | `New` | `Used`. example [affiliate-bridge condition="Used"] (default is `All`)
-7. defimage - link to default image. example [affiliate-bridge condition="https://example.com/wp-content/uploads/08/20/my-cool-image.png"] (default is `All`)
+1. items - number of items to show. example: `[affiliate-bridge items="4"]` (default = 1)
+2. size - image size. options are: `small` | `medium` | `large`. example: `[affiliate-bridge size="small"]` (default = large)
+3. keywords - add search keywords (with spaces and other special characters). used to override the default you set in admin. example `[affiliate-bridge keywords="baseball cards"]`
+4. framed - choose what kind of image frame to use.  example `[affiliate-bridge framed="C"]`. (you can also use `affiliate_bridge_image_style_override_custom` filter to use you own customized css)
+5. categories - ddd Category IDs, separated by a comma. Download eBay Categories. example `[affiliate-bridge categories="213"]`
+6. condition - product condition. options are `All` | `New` | `Used`. example `[affiliate-bridge condition="Used"]` (default is `All`)
+7. defimage - link to default image. example `[affiliate-bridge defimage="https://example.com/wp-content/uploads/08/20/my-cool-image.png"]` (default is `All`)
 8. source - currently no use. will be added in future versions.
 
 ## Minimum Requirements
@@ -73,6 +73,11 @@ https://affiliate-bridge.com/
 https://www.bicycle-riding.com/
 
 ## Change log
+
+* 1.0.1
+    * Fixed error with shortcode not being recognized
+    * Fixed image width issue in Chrome-based browsers
+
 
 * 1.0.0
     * Initial Release

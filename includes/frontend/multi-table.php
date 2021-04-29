@@ -67,6 +67,7 @@ $image_css .= 'border: 0;';
                             src="<?php echo esc_attr($pic); ?>"
                             alt="<?php echo esc_attr($alt); ?>"
                             title="<?php echo esc_attr($alt) ?>"
+                            class="ab-tbl-image"
                     />
                 </a></td>
             <td align="center" valign="bottom" class="ab-tbl-data-multi">

@@ -30,6 +30,8 @@ $image_css .= 'border: 0;';
             src="<?php echo esc_url($defimage); ?>"
             alt="<?php echo __('Default Image', 'affiliate-bridge'); ?>"
             title="<?php echo __('Default Image', 'affiliate-bridge'); ?>"
+            class="ab-tbl-image"
+
     />
 </div>
 <?php if ($fail_message): ?>
