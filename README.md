@@ -74,10 +74,12 @@ https://www.bicycle-riding.com/
 
 ## Change log
 
+* 1.0.2
+    * Fixed short description on Wordpress.org plugin library
+
 * 1.0.1
     * Fixed error with shortcode not being recognized
     * Fixed image width issue in Chrome-based browsers
-
 
 * 1.0.0
     * Initial Release

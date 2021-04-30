@@ -5,11 +5,11 @@ Tags: affiliate, ebay, bridge
 Requires at least: 5.0.0
 Tested up to: 5.7.1
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
 
-Affiliate Bridge for wordpress.
+Easily add product images from affiliate programs using shortcodes.
 
 == Description ==
 
@@ -84,6 +84,9 @@ https://affiliate-bridge.com/
 https://www.bicycle-riding.com/
 
 == Changelog ==
+
+= 1.0.2 - Apr 30 2021 =
+* Fixed short description on Wordpress.org plugin library
 
 = 1.0.1 - Apr 28 2021 =
 * Fixed error with shortcode not being recognized

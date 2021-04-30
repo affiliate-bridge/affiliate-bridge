@@ -49,6 +49,10 @@ if (!class_exists('Affiliate_Bridge')) {
             // Add plugin shortcode
             add_shortcode('affiliate-bridge', [$this, 'affiliate_bridge_output']);
 
+            // This incorrect shortcode added for those who used the 1.0.0 version
+            // TODO: Add a "deprecated" message and eventually remove entirely.
+            add_shortcode('affiliate_bridge', [$this, 'affiliate_bridge_output']);
+
             $this->add_actions();
             $this->add_filters();
         }
