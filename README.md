@@ -74,6 +74,9 @@ https://www.bicycle-riding.com/
 
 ## Change log
 
+* 1.1.0
+    * Refactored code to more easily allow adding new sources
+
 * 1.0.2
     * Fixed short description on Wordpress.org plugin library
 

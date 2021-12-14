@@ -1,0 +1,149 @@
+div.ab-debug {
+    width:              80%;
+    margin:             1em auto;
+    background:         #004400;
+    border-radius:      10px;
+    padding:            1em;
+    color:              #FFFFFF;
+}
+
+strong.ab-debug-heading {
+    font-size:          1.5em;
+    display:            inline-block;
+}
+
+em.ab-debug-info {
+    font-size:          0.85em;
+}
+
+pre.ab-debug-output {
+    border:             1px solid #FFFFFF;
+    padding:            1em;
+    margin:             1em;
+    background:         #000000;   
+}
+
+div.ab-new-source-list-item 
+{
+    vertical-align:         middle;
+    border:                 1px solid #000;
+    border-radius:          10px;
+    padding:                1em;
+    margin:                 1em;
+    width:                  450px;
+    height:                 200px;
+}
+
+div.ab-new-source-list-item:hover
+{
+    background:             #aaa;
+}
+
+div.ab-new-source-list-item input[type=radio],
+div.ab-new-source-list-item label
+{
+    display:                inline-block;
+    vertical-align:         middle;
+}
+
+div.ab-new-source-list-item label
+{
+    height:                 100%;
+}
+
+div.ab-new-source-list-item div.ab-source-logo,
+table.wp-list-table td.source div.ab-source
+{
+    height:                 200px;
+    width:                  200px;
+    display:                inline-block;
+    vertical-align:         middle;
+    margin-right:           1.5em;
+}
+
+table.wp-list-table td.source div.ab-source
+{
+    height:                 100px;
+    width:                  100px;
+}
+
+table.wp-list-table td.order div.ab-priority,
+table.wp-list-table td.actions div.ab-actions
+{
+    height:                 100px;
+}
+
+table.wp-list-table td.order div.ab-priority input,
+table.wp-list-table td.actions div.ab-actions div
+{
+    vertical-align:         middle;
+    display:                inline-block;
+}
+
+div.ab-new-source-list-item div.ab-source-logo span.ab-helper,
+table.wp-list-table td.source div.ab-source span.ab-helper,
+table.wp-list-table td.order div.ab-priority span.ab-helper,
+table.wp-list-table td.actions div.ab-actions span.ab-helper
+{
+    display:                inline-block;
+    height:                 100%;
+    vertical-align:         middle;
+}
+
+div.ab-new-source-list-item div.ab-source-logo img.ab-source-logo,
+table.wp-list-table td.source div.ab-source img.ab-source-logo
+{
+    max-height:             100%;
+    max-width:              100%;
+    vertical-align:         middle;
+    margin:                 auto;
+    display:                inline-block;
+}
+
+table.wp-list-table td.actions div.ab-actions a.remove
+{
+    color:                  #AA0000;
+}
+
+table.wp-list-table td.actions div.ab-actions a.remove:hover
+{
+    color:                  #FFFFFF;
+}
+
+table.wp-list-table td.actions div.ab-actions a.remove.button-remove {
+    border-color:           #AA0000;
+}
+
+table.wp-list-table td.actions div.ab-actions a.remove.button-remove:hover {
+    border-color:           #FF0000;
+    background-color:       #FF0000;
+}
+
+div.ab-new-source-list-item div.ab-source-info
+{
+    vertical-align:         middle;
+    display:                inline-block;
+    width:                  200px;
+}
+
+div.ab-new-source-list-item div.ab-source-info strong
+{
+    display:                block;
+}
+
+span.ab-red,
+form table.form-table strong.required
+{
+    color:                  #AA0000;
+    font-weight:            bold;
+}
+
+form table.form-table select[multiple]:hover
+{
+    color:                  inherit;
+}
+
+form input.button.ab-yesno
+{
+    display:                inline;
+}
