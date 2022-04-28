@@ -2,7 +2,7 @@
 // Plugin Information
 define( 'AB_PLUGIN_NAME',                   'Affiliate Bridge' );
 define( 'AB_PLUGIN_DESCRIPTION',            'Easily add product images from affiliate programs using shortcodes.' );
-define( 'AB_PLUGIN_VERSION',                '1.1.0' );
+define( 'AB_PLUGIN_VERSION',                '2.0.0' );
 define( 'AB_PLUGIN_AUTHOR',                 'David Lidor' );
 define( 'AB_PLUGIN_AUTHOR_URI',             'https://www.bicycle-riding.com' );
 define( 'AB_PLUGIN_DOMAIN',                 'affiliate-bridge' );
